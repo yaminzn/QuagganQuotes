@@ -1,0 +1,197 @@
+<html>
+
+<head>
+    <title>Paroles de Quaggan</title>
+    <link rel="shortcut icon" type="image/png" href="https://pre00.deviantart.net/e4e0/th/pre/i/2013/219/0/3/quaggan_king___master_race_badge_by_reitakoyaki-d6h4tud.jpg"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <style>
+        .flex-c-c {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .quote-text {
+            padding: 10px 0px;
+            font-weight: 600;
+        }
+        
+        footer {
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+        
+        body {
+            font-family: 'Oxygen', sans-serif;
+            height: 100%;
+            width: 100vw;
+            background-color: #3c40c6 !important;
+            background-image: url(https://flatuicolors.com/static/img/stars-opacity.0979c19.svg);
+        }
+        
+        .wrapper {
+            width: 100%;
+            height: 80%;
+            padding: 10px 0px;
+        }
+        
+        @media screen and (min-width: 451px) {
+            .card {
+                margin: 30px;
+                width: 70vw;
+            }
+        }
+        
+        @media screen and (max-width: 450px) {
+            .card {
+                margin: 0px;
+                width: 90%;
+                min-width: 210px !important;
+            }
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .carousel-item {
+            min-width: 210px;
+        }
+        
+        .carousel,
+        .carousel-inner,
+        .carousel-item {
+            width: 100% !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper flex-c-c">
+
+        <div class="card">
+            <h5 class="card-header text-muted">
+
+            <button id="prev" class="flex-c-c btn btn-primary">
+    <i class="fas fa-angle-left"></i>
+  </button>
+          <div id="index" class="flex-c-c">
+            -
+          </div>
+          <button id="next" class="flex-c-c btn btn-primary">
+    <i class="fas fa-angle-right"></i>
+  </button>
+        </h5>
+            <div class="card-body flex-c-c">
+
+                <div class="quote-block">
+                    <blockquote class="blockquote">
+                        <div class="flex-c-c text-muted">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p id="text" class="mb-0 quote-text text-center animated flipInY">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <div class="flex-c-c text-muted">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+
+                        <footer class="flex-c-c">
+                            <cite id="author" title="Source Title" class="animated flipInY">Source Title</cite>
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $.fn.extend({
+            animateCss: function(animationName, callback) {
+                var animationEnd = (function(el) {
+                    var animations = {
+                        animation: 'animationend',
+                        OAnimation: 'oAnimationEnd',
+                        MozAnimation: 'mozAnimationEnd',
+                        WebkitAnimation: 'webkitAnimationEnd',
+                    };
+
+                    for (var t in animations) {
+                        if (el.style[t] !== undefined) {
+                            return animations[t];
+                        }
+                    }
+                })(document.createElement('div'));
+
+                this.addClass('animated ' + animationName).one(animationEnd, function() {
+                    $(this).removeClass('animated ' + animationName);
+
+                    if (typeof callback === 'function') callback();
+                });
+
+                return this;
+            },
+        });
+
+        function setupQuotes(data) {
+            var quotes = [];
+            data.quotes.forEach(function(item, index) {
+                item.id = index;
+                quotes.push(item);
+            });
+
+            return quotes;
+        }
+
+        function update() {
+            document.getElementById("index").innerHTML = (index + 1) + "/" + shuffled.length;
+            document.getElementById("author").innerHTML = shuffled[index].author;
+            document.getElementById("text").innerHTML = shuffled[index].text;
+
+            $('#author').animateCss('flipInY');
+            $('#text').animateCss('flipInY');
+        }
+
+        var data = {
+            "quotes": [{
+                "author": "Hunger",
+                "text": "lemace"
+            }, {
+                "author": "Hunger",
+                "text": "trisératops"
+            }, {
+                "author": "Sika",
+                "text": "bao ta gueule"
+            }]
+        };
+
+        var index = 0;
+        var shuffled = setupQuotes(data).map((a) => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map((a) => a[1]);
+
+        update();
+
+        document.getElementById("prev").addEventListener("click", function() {
+            if (index == 0) index = shuffled.length - 1;
+            else index--;
+
+            update();
+        });
+
+        document.getElementById("next").addEventListener("click", function() {
+            if (index == shuffled.length - 1) index = 0;
+            else index++;
+
+            update();
+        });
+    </script>
+
+</body>
+
+</html>
