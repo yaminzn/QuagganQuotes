@@ -16,7 +16,6 @@
         
         .quote-text {
             padding: 10px 0px;
-            font-weight: 600;
         }
         
         footer {
@@ -153,7 +152,7 @@
         function update() {
             document.getElementById("index").innerHTML = (index + 1) + "/" + shuffled.length;
             document.getElementById("author").innerHTML = shuffled[index].author;
-            document.getElementById("text").innerHTML = shuffled[index].text;
+            document.getElementById("text").innerHTML = '<strong>'+shuffled[index].text+'</strong>';
 
             $('#author').animateCss('flipInY');
             $('#text').animateCss('flipInY');
