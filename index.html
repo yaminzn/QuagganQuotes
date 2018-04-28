@@ -95,18 +95,18 @@
             <div class="card-body flex-c-c">
 
                 <div class="quote-block">
-                    <blockquote class="blockquote">
+                    <blockquote id="blockquote" class="blockquote animated flipInY">
                         <div class="flex-c-c text-muted">
                             <i class="fas fa-quote-left"></i>
                         </div>
-                        <p id="text" class="mb-0 quote-text text-center animated flipInY">
+                        <p id="text" class="mb-0 quote-text text-center">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                         <div class="flex-c-c text-muted">
                             <i class="fas fa-quote-right"></i>
                         </div>
 
                         <footer class="flex-c-c">
-                            <cite id="author" title="Source Title" class="animated slideInDown">Source Title</cite>
+                            <cite id="author" title="Source Title">Source Title</cite>
                         </footer>
                     </blockquote>
                 </div>
@@ -162,8 +162,7 @@
             document.getElementById("author").innerHTML = shuffled[index].author;
             document.getElementById("text").innerHTML = '<strong>'+shuffled[index].text+'</strong>';
 
-            $('#author').animateCss('slideInDown');
-            $('#text').animateCss('bounce');
+            $('#blockquote').animateCss('flipInY');
         }
 
         var data = {
